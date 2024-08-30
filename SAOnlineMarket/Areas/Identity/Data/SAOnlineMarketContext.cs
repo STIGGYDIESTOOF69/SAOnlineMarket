@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SAOnlineMarket.Areas.Identity.Data;
+using SAOnlineMarket.Models;
 
 namespace SAOnlineMarket.Data;
 
@@ -19,4 +20,8 @@ public class SAOnlineMarketContext : IdentityDbContext<SAOnlineMarketUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+public DbSet<SAOnlineMarket.Models.Product> Product { get; set; } = default!;
+
+public DbSet<SAOnlineMarket.Models.Order> Order { get; set; } = default!;
 }
