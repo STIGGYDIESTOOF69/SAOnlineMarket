@@ -13,6 +13,7 @@ namespace SAOnlineMarket.Controllers
     public class OrdersController : Controller
     {
         private readonly SAOnlineMarketContext _context;
+        private readonly ILogger<HomeController> _logger;
 
         public OrdersController(SAOnlineMarketContext context)
         {

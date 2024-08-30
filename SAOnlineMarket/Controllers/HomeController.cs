@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SAOnlineMarket.Data;
 using SAOnlineMarket.Models;
 using System.Diagnostics;
+using SAOnlineMarket.Services;
 
 namespace SAOnlineMarket.Controllers
 {
@@ -44,5 +46,22 @@ namespace SAOnlineMarket.Controllers
             }
             return View(product);
         }
-    }
+
+
+        [HttpPost]
+        public IActionResult AddToCart(int id)
+        {
+            var product = _context.Product.FirstOrDefault(p => p.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+
+            CartService.AddToCart(product);
+
+            return RedirectToAction("Index", "Cart");
+
+
+   }     }
 }

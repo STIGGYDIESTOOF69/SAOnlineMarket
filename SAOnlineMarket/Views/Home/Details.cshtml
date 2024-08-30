@@ -13,7 +13,11 @@
             <h1>@Model.ProductName</h1>
             <p class="price">Price: R @Model.ProductPrice</p>
             <p class="description">@Model.ProductDescription</p>
-            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Products</a>
+            <form asp-action="AddToCart" asp-controller="Home" method="post">
+                <input type="hidden" name="id" value="@Model.ProductId" />
+                <button type="submit" class="btn btn-success">Add to Cart</button>
+            </form>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">Back to Products</a>
         </div>
     </div>
 </div>
