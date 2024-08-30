@@ -2,7 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+@model IEnumerable<SAOnlineMarket.Models.Product>
+
+<div class="products-container container clearfix">
+    <div class="row">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            var product = Model.ElementAt(i);
+            <div class="col-sm p-3">
+                <div class="card rounded-5" style="width: 18rem;">
+                    <a href="@Url.Action("Details", "Home", new { id = product.ProductId })"> 
+                        <img class="card-img-top" src="@product.ProductImage" alt="@product.ProductName" style="max-width: 100%; height: auto;" />
+                    </a>
+                    <div class="card-body">
+                        <h2 class="card-title text-left text-dark">@product.ProductName</h2>
+                        <p class="card-subtitle text-dark">R @product.ProductPrice</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>

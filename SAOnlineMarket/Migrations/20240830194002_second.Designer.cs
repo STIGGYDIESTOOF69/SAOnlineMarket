@@ -12,8 +12,8 @@ using SAOnlineMarket.Data;
 namespace SAOnlineMarket.Migrations
 {
     [DbContext(typeof(SAOnlineMarketContext))]
-    [Migration("20240830175133_secondmigration")]
-    partial class secondmigration
+    [Migration("20240830194002_second")]
+    partial class second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -290,6 +290,62 @@ namespace SAOnlineMarket.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            ProductDescription = "Can confirm he is one of the people of all time",
+                            ProductImage = "https://media.newyorker.com/photos/630e85c820c2208e4152741d/master/pass/Cassidy-Biden-Month.jpg",
+                            ProductName = "Biden",
+                            ProductPrice = 200.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            ProductDescription = "A very large and fluffy fellow",
+                            ProductImage = "https://i.redd.it/3z3f8y6u1fn81.jpg",
+                            ProductName = "Cat",
+                            ProductPrice = 5.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            ProductDescription = "Salivation",
+                            ProductImage = "https://www.dogly.co.uk/wp-content/uploads/dog-with-a-huge-tongue.jpg",
+                            ProductName = "Dog",
+                            ProductPrice = 5.10m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            ProductDescription = "Boosts user evasion skill by 5%",
+                            ProductImage = "https://media-cldnry.s-nbcnews.com/image/upload/t_focal-440x220,f_auto,q_auto:best/rockcms/2024-08/240826-donald-trump-pro-choice-republicans-wm-146p-6025d1.jpg",
+                            ProductName = "Trump",
+                            ProductPrice = 210.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            ProductDescription = "bad to the bone.mp4",
+                            ProductImage = "https://i.pinimg.com/736x/0c/2f/50/0c2f50dd058a1409a390ae68de5dabdd.jpg",
+                            ProductName = "Nicolas Cage",
+                            ProductPrice = 1000.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            ProductDescription = "His face is very comforting :3",
+                            ProductImage = "https://media.newyorker.com/photos/590971f6c14b3c606c108102/master/pass/Crouch-Understanding-Obama-Basketball.jpg",
+                            ProductName = "Obama",
+                            ProductPrice = 700.00m,
+                            ProductQuantity = 0m
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

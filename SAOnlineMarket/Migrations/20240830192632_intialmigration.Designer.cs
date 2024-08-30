@@ -12,8 +12,8 @@ using SAOnlineMarket.Data;
 namespace SAOnlineMarket.Migrations
 {
     [DbContext(typeof(SAOnlineMarketContext))]
-    [Migration("20240830170123_initialmigration")]
-    partial class initialmigration
+    [Migration("20240830192632_intialmigration")]
+    partial class intialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -225,6 +225,127 @@ namespace SAOnlineMarket.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("SAOnlineMarket.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<decimal>("Grandtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProductDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProductPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("SAOnlineMarket.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+
+                    b.Property<string>("ProductDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ProductPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ProductQuantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ProductId");
+
+                    b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            ProductDescription = "Can confirm he is one of the people of all time",
+                            ProductImage = "https://tenor.com/view/joe-biden-presidential-debate-huh-confused-gif-16704157274113773062",
+                            ProductName = "Biden",
+                            ProductPrice = 200.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            ProductDescription = "A very large and fluffy fellow",
+                            ProductImage = "https://tenor.com/view/qurial-bleeeh-cat-meme-qvrial-gif-27229139",
+                            ProductName = "Cat",
+                            ProductPrice = 5.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            ProductDescription = "Salivation",
+                            ProductImage = "https://tenor.com/view/freaky-dog-im-fr-an-eater-qazira-dog-tongue-freaky-dog-tongue-gif-14576727459878736156",
+                            ProductName = "Dog",
+                            ProductPrice = 5.10m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            ProductDescription = "Boosts user evasion skill by 5%",
+                            ProductImage = "https://tenor.com/view/trump-dance-trump-party-gif-16998177",
+                            ProductName = "Trump",
+                            ProductPrice = 210.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            ProductDescription = "bad to the bone.mp4",
+                            ProductImage = "https://tenor.com/view/nicholas-cage-ghost-rider-sus-dead-funny-gif-27534726",
+                            ProductName = "Nicolas Cage",
+                            ProductPrice = 1000.00m,
+                            ProductQuantity = 0m
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            ProductDescription = "His face is very comforting :3",
+                            ProductImage = "https://tenor.com/view/obama-obama-cartwheel-goodbye-chat-goodbyechat-gif-11045688346184983142",
+                            ProductName = "Obama",
+                            ProductPrice = 700.00m,
+                            ProductQuantity = 0m
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

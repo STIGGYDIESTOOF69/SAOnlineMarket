@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace SAOnlineMarket.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class intialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,6 +50,41 @@ namespace SAOnlineMarket.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProductQuantity = table.Column<int>(type: "int", nullable: false),
+                    Grandtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.OrderId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProductQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,6 +193,19 @@ namespace SAOnlineMarket.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "ProductDescription", "ProductImage", "ProductName", "ProductPrice", "ProductQuantity" },
+                values: new object[,]
+                {
+                    { 1, "Can confirm he is one of the people of all time", "https://tenor.com/view/joe-biden-presidential-debate-huh-confused-gif-16704157274113773062", "Biden", 200.00m, 0m },
+                    { 2, "A very large and fluffy fellow", "https://tenor.com/view/qurial-bleeeh-cat-meme-qvrial-gif-27229139", "Cat", 5.00m, 0m },
+                    { 3, "Salivation", "https://tenor.com/view/freaky-dog-im-fr-an-eater-qazira-dog-tongue-freaky-dog-tongue-gif-14576727459878736156", "Dog", 5.10m, 0m },
+                    { 4, "Boosts user evasion skill by 5%", "https://tenor.com/view/trump-dance-trump-party-gif-16998177", "Trump", 210.00m, 0m },
+                    { 5, "bad to the bone.mp4", "https://tenor.com/view/nicholas-cage-ghost-rider-sus-dead-funny-gif-27534726", "Nicolas Cage", 1000.00m, 0m },
+                    { 6, "His face is very comforting :3", "https://tenor.com/view/obama-obama-cartwheel-goodbye-chat-goodbyechat-gif-11045688346184983142", "Obama", 700.00m, 0m }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -213,6 +263,12 @@ namespace SAOnlineMarket.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Product");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -1,0 +1,19 @@
+﻿@model SAOnlineMarket.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="product-details container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ProductImage" alt="@Model.ProductName" class="img-fluid" style="object-fit: scale-down; width: 100%; height: auto;" />
+        </div>
+        <div class="col-md-6">
+            <h1>@Model.ProductName</h1>
+            <p class="price">Price: R @Model.ProductPrice</p>
+            <p class="description">@Model.ProductDescription</p>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Products</a>
+        </div>
+    </div>
+</div>

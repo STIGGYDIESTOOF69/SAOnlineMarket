@@ -8,7 +8,7 @@ var connectionString = builder.Configuration.GetConnectionString("SAOnlineMarket
 
 builder.Services.AddDbContext<SAOnlineMarketContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<SAOnlineMarketUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<SAOnlineMarketContext>();
+builder.Services.AddDefaultIdentity<SAOnlineMarketUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<SAOnlineMarketContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
